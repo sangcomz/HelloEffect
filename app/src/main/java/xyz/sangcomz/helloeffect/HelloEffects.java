@@ -32,11 +32,13 @@ import android.media.effect.EffectFactory;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLUtils;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-public class HelloEffects extends AppCompatActivity implements GLSurfaceView.Renderer {
+public class HelloEffects extends AppCompatActivity implements GLSurfaceView.Renderer, View.OnClickListener {
 
     private GLSurfaceView mEffectView;
     private int[] mTextures = new int[2];
@@ -48,6 +50,10 @@ public class HelloEffects extends AppCompatActivity implements GLSurfaceView.Ren
     private boolean mInitialized = false;
     int mCurrentEffect;
 
+    RelativeLayout areaEffect;
+    RelativeLayout areaCrop;
+    RelativeLayout areaRotate;
+
     public void setCurrentEffect(int effect) {
         mCurrentEffect = effect;
     }
@@ -56,6 +62,13 @@ public class HelloEffects extends AppCompatActivity implements GLSurfaceView.Ren
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        areaEffect = (RelativeLayout) findViewById(R.id.area_effect);
+        areaCrop = (RelativeLayout) findViewById(R.id.area_crop);
+        areaRotate = (RelativeLayout) findViewById(R.id.area_rotate);
+
+        areaEffect.setOnClickListener(this);
+        areaCrop.setOnClickListener(this);
+        areaRotate.setOnClickListener(this);
         /**
          * Initialize the renderer and tell it to only render when
          * explicity requested with the RENDERMODE_WHEN_DIRTY option
@@ -245,8 +258,7 @@ public class HelloEffects extends AppCompatActivity implements GLSurfaceView.Ren
         if (mCurrentEffect != R.id.none) {
             // if no effect is chosen, just render the original bitmap
             mTexRenderer.renderTexture(mTextures[1]);
-        }
-        else {
+        } else {
             // render the result of applyEffect()
             mTexRenderer.renderTexture(mTextures[0]);
         }
@@ -292,5 +304,19 @@ public class HelloEffects extends AppCompatActivity implements GLSurfaceView.Ren
         setCurrentEffect(item.getItemId());
         mEffectView.requestRender();
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id) {
+            case R.id.area_effect:
+                break;
+            case R.id.area_crop:
+                break;
+            case R.id.area_rotate:
+                break;
+        }
     }
 }
