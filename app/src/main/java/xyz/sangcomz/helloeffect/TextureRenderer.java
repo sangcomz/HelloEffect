@@ -66,6 +66,7 @@ public class TextureRenderer {
     private static final int FLOAT_SIZE_BYTES = 4;
 
     public void init() {
+        System.out.println(":::: init ::::");
         // Create program
         mProgram = GLToolbox.createProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
@@ -87,22 +88,26 @@ public class TextureRenderer {
     }
 
     public void tearDown() {
+        System.out.println(":::: tearDown ::::");
         GLES20.glDeleteProgram(mProgram);
     }
 
     public void updateTextureSize(int texWidth, int texHeight) {
+        System.out.println(":::: updateTextureSize ::::");
         mTexWidth = texWidth;
         mTexHeight = texHeight;
         computeOutputVertices();
     }
 
     public void updateViewSize(int viewWidth, int viewHeight) {
+        System.out.println(":::: updateViewSize ::::");
         mViewWidth = viewWidth;
         mViewHeight = viewHeight;
         computeOutputVertices();
     }
 
     public void renderTexture(int texId) {
+        System.out.println(":::: renderTexture ::::");
         // Bind default FBO
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
 
@@ -140,6 +145,7 @@ public class TextureRenderer {
     }
 
     private void computeOutputVertices() {
+        System.out.println(":::: computeOutputVertices ::::");
         if (mPosVertices != null) {
             float imgAspectRatio = mTexWidth / (float)mTexHeight;
             float viewAspectRatio = mViewWidth / (float)mViewHeight;

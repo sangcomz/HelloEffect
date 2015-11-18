@@ -24,12 +24,19 @@
         android:layout_weight="1">
 
         <android.opengl.GLSurfaceView
-            android:id="@+id/effectsview"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp" />
+        android:id="@+id/effectsview"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
 
+        <include
+            android:layout_alignParentBottom="true"
+            layout="@layout/bottom_effect_bar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
 
     </RelativeLayout>
+
+
 
     <include
         layout="@layout/bottom_bar"
